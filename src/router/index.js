@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Win10 from '../views/admin/index.vue'
+import Win10 from '../views/win10/index.vue'
 
 Vue.use(VueRouter)
 
