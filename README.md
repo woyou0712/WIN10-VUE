@@ -34,7 +34,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
  option = {
     title: "新窗口",//应用名称
     theme: "theme",//主题css类名
-    content: "http://www.baidu.com",//内容:如果是iframe就直接填写完整的url,如果是VUE组件需要先引入组件; 详细:请阅读后面的 #系统配置
+    content: "http://www.baidu.com",//内容:如果是iframe就直接填写完整的url
     size: ["70%", "80%"],//窗口大小
     maxmin: true,//是否显示最大化和最小化,默认为true
     on(appBox) { return },//打开窗口的回调函数 appBox:窗口对象
@@ -45,6 +45,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     off(id) { return },//关闭窗口回调函数
   }
 ```
+- 弹窗VUE组件需要先引入组件; 详情:[系统配置](#系统配置)
 # 右键菜单
 - index.vue
 ### 配置
