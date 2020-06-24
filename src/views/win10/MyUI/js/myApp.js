@@ -208,22 +208,8 @@
     this.zIndex += 1
     // APP容器
     let appBox = document.createElement("div");
-    appBox.classList.add("my-alert")
     appBox.id = this.id;
     appBox.style["z-index"] = this.zIndex;
-    // 鼠标按下事件
-    appBox.onmousedown = (e) => {
-      e.stopPropagation();
-      // 如果之前还有遮罩层则清除掉遮罩层
-      let arr = document.querySelectorAll(".app-shade")
-      for (let item of arr) {
-        appBox.removeChild(item)
-      }
-      // 置顶 并且调用回调函数
-      this.down(appBox, config);
-      // 拖拽事件
-      drga(e, appBox, this.shade)
-    };
     // 阻止右键默认事件
     appBox.oncontextmenu = e => {
       e.stopPropagation();
@@ -244,6 +230,20 @@
   // 创建一个alert弹窗
   MyUI.prototype.alert = function (config) {
     let { father, appBox, msg } = this.__initInfo(config)
+    appBox.classList.add("my-alert")
+    // 鼠标按下事件
+    appBox.onmousedown = (e) => {
+      e.stopPropagation();
+      // 如果之前还有遮罩层则清除掉遮罩层
+      let arr = document.querySelectorAll(".app-shade")
+      for (let item of arr) {
+        appBox.removeChild(item)
+      }
+      // 置顶 并且调用回调函数
+      this.down(appBox, config);
+      // 拖拽事件
+      drga(e, appBox, this.shade)
+    };
     // 标题
     let title = document.createElement("div");
     title.classList.add("pop-title");
@@ -302,6 +302,7 @@
   // 创建一个消息提示框
   MyUI.prototype.msg = function (config) {
     let { father, appBox, msg } = this.__initInfo(config)
+    appBox.classList.add("my-msg")
     appBox.appendChild(msg);
     // 将元素挂在到桌面
     father.appendChild(appBox);

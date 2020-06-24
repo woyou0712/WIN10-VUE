@@ -98,7 +98,6 @@ export default {
   data() {
     return {
       // 菜单数据,-可从服务器获取
-
       memuData: [
         {
           imgType: "img", //图标类型 "icon", "img"
@@ -138,7 +137,7 @@ export default {
           icon: "", //图标,二选一
           img:
             "http://a-ssl.duitang.com/uploads/item/201812/29/20181229212334_tvakj.thumb.700_0.jpeg", //图片,二选一
-          name: "一级菜单一级菜单一级菜单一级菜单一级菜单3", //名称
+          name: "一级菜单3", //名称
           //子菜单
           son: [
             {
@@ -146,7 +145,7 @@ export default {
               icon: "",
               img:
                 "http://up.enterdesk.com/edpic/31/c3/fd/31c3fdc63511cabedd6415d121fa2d58.jpg",
-              name: "二级菜单二级菜单二级菜单二级菜单2",
+              name: "二级菜单2",
               son: [
                 {
                   imgType: "img", //图标类型 "icon", "img"
@@ -178,7 +177,7 @@ export default {
                   icon: "",
                   img:
                     "http://img5.imgtn.bdimg.com/it/u=3994192346,279218919&fm=26&gp=0.jpg",
-                  name: "三级菜单三级菜单三级菜单三级菜单310",
+                  name: "三级菜单10",
                   son: []
                 }
               ]
@@ -196,7 +195,7 @@ export default {
           imgType: "icon", //图标类型 "icon", "img"
           icon: "&#xe6fe;", //图标,二选一
           img: "", //图片,二选一
-          name: "哈哈哈哈",
+          name: "小妖出品",
           content: "内容"
         },
         {
@@ -204,7 +203,7 @@ export default {
           icon: "", //图标,二选一
           img:
             "http://img3.imgtn.bdimg.com/it/u=2309403106,223725119&fm=26&gp=0.jpg", //图片,二选一
-          name: "哈哈哈哈",
+          name: "小妖出品",
           content: "内容"
         },
         {
@@ -212,7 +211,7 @@ export default {
           icon: "", //图标,二选一
           img:
             "http://img3.imgtn.bdimg.com/it/u=2309403106,223725119&fm=26&gp=0.jpg", //图片,二选一
-          name: "哈哈哈哈",
+          name: "小妖出品",
           content: "内容"
         },
         {
@@ -220,7 +219,7 @@ export default {
           icon: "", //图标,二选一
           img:
             "http://img3.imgtn.bdimg.com/it/u=2309403106,223725119&fm=26&gp=0.jpg", //图片,二选一
-          name: "哈哈哈哈",
+          name: "小妖出品",
           content: "内容"
         },
         {
@@ -228,7 +227,7 @@ export default {
           icon: "", //图标,二选一
           img:
             "http://img3.imgtn.bdimg.com/it/u=2309403106,223725119&fm=26&gp=0.jpg", //图片,二选一
-          name: "哈哈哈哈",
+          name: "小妖出品",
           content: "内容"
         }
       ]
@@ -254,14 +253,14 @@ export default {
     clickMemu(memu) {
       this.myApp.alert({
         title: memu.name,
-        content: "你想干什么?接口位置:/admin/components/built-in/memu.vue"
+        content: "你想怎么做?接口位置:/admin/components/built-in/memu.vue"
       });
     },
     // 点击磁贴
     clickPaster(paster) {
       this.myApp.alert({
         title: paster.name,
-        content: "你想干什么?接口位置:/admin/components/built-in/memu.vue"
+        content: "你想怎么做?接口位置:/admin/components/built-in/memu.vue"
       });
     },
     // 用户设置
@@ -279,7 +278,7 @@ export default {
     quit() {
       this.myApp.alert({
         title: "退出登陆",
-        content: "你想干什么?接口位置:/admin/components/built-in/memu.vue"
+        content: "你想怎么做?接口位置:/admin/components/built-in/memu.vue"
       });
     }
   }
