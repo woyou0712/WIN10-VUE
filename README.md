@@ -126,14 +126,158 @@ data(){
   }
 }
 ```
-### 获取配置
-- 在登陆之后开始获取配置
+### 登陆并配置
 ```
 methods:{
   login(uname, upwd, loadData) {
-    // uneme 用户名
-    // upwd 密码
-    // loadData 回调函数,告诉login页面已经登陆成功,开始加载配置
+    if (!uname) {
+      this.myApp.msg({
+        content: "用户名不能为空"
+      });
+      return;
+    } else if (!upwd) {
+      this.myApp.msg({
+        content: "密码不能为空"
+      });
+      return;
+    }
+    if (uname == "admin" && upwd == "123456") {
+      // 登陆成功,开始加载配置
+      // 先调用回调函数,告诉子组件登陆成功了,开始加载配置
+      if (typeof loadData == "function") {
+        loadData();
+      }
+      // 为了能够看到加载效果,假设请求数据要两秒钟,实际是ajax请求的时间
+      setTimeout(() => {
+        // 如果配置在服务器,请求服务器配置文件,
+        // 背景图片列表
+        this.bgList = [
+          require("./images/bg_01.jpg"),
+          require("./images/bg_02.jpg"),
+          require("./images/bg_03.jpg"),
+          require("./images/bg_04.jpg"),
+          require("./images/bg_05.jpg")
+        ];
+        this.bgIndex = 0; //当前背景下标
+        // 主题Class列表
+        this.themeColors = [
+          "theme-a",
+          "theme-b",
+          "theme-c",
+          "theme-d",
+          "theme-e",
+          "theme-f",
+          "theme-g",
+          "theme-h",
+          "theme-i",
+          "theme-j",
+          "theme-k",
+          "theme-l",
+          "theme-m",
+          "theme-n",
+          "theme-o",
+          "theme-p",
+          "theme-q",
+          "theme-r",
+          "theme-s",
+          "theme-t",
+          "theme-u",
+          "theme-v",
+          "theme-w",
+          "theme-x",
+          "theme-y",
+          "theme-z"
+        ];
+        this.themeIndex = 18; //当前主题下标
+        // 桌面应用列表
+        this.windowsApp = [
+          {
+            id: 1, //唯一ID
+            name: "浏览器", //应用名称
+            imgType: "icon",
+            icon: "&#xe604;", //应用图标
+            img: "",
+            content: browser, //VUE组件
+            type: "vue", //应用类型
+            isShow: true, //是否在桌面显示
+            isDel: false //是否允许删除
+          },
+          {
+            id: 2,
+            name: "百度一下",
+            imgType: "icon",
+            icon: "&#xe612;",
+            img: "",
+            content: "https://www.baidu.com/",
+            type: "html",
+            isShow: true,
+            isDel: true
+          },
+          {
+            id: 3,
+            name: "微信",
+            imgType: "icon",
+            icon: "&#xe638;",
+            img: "",
+            content: "https://wx.qq.com/",
+            type: "html",
+            isShow: true,
+            isDel: true
+          }
+        ];
+        // 数据全部获取到了之后,登陆完成,显示桌面
+        this.isLogin = true;
+      }, 2000);
+    } else {
+      this.myApp.msg({
+        content: "用户名或密码错误"
+      });
+    }
   }
 }
 ```
+# 修改系统配置
+- index.vue
+- 可在以下函数中,将配置保存到服务器或者作别的处理
+```
+methods:{
+  // 监听背景修改
+  onbg(i) {
+    if (this.bgIndex == i) {
+      return;
+    }
+    this.bgIndex = i;
+    // 然后将配置保存到服务器
+  },
+  // 监听主题修改
+  ontheme(i) {
+    if (this.themeIndex == i) {
+      return;
+    }
+    this.themeIndex = i;
+    // 然后将配置保存到服务器
+  },
+  // 添加App
+  addNewAPP(app, end) {
+    if (app) {
+      this.windowsApp.push(app);
+      if (typeof end == "function") {
+        // 添加完成调用回调函数
+        end();
+        // 然后将配置保存到服务器
+      }
+    }
+  },
+  // 修改App
+  setWinApp(app) {
+    // 将配置保存到服务器
+    console.log("确定修改APP", app);
+  },
+  // 从系统中删除APP
+  delWinApp(app) {
+    // 将配置保存到服务器
+    console.log("卸载APP", app);
+  },
+}
+```
+
