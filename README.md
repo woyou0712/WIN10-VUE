@@ -12,7 +12,7 @@ $ npm run serve
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## 引入到自己的项目中
+# 引入到自己的项目中
 ```
 - src/views/win10整个复制到自己项目的views目录下
 - 在router中引入win10/index.vue
