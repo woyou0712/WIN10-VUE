@@ -28,6 +28,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ```
  - this.myApp.html(option) //弹出一个可以拖动的iframe窗口
  - this.myApp.vue(option) //弹出一个可以拖动的VUE组件窗口
- - this.myApp.alert(option) //弹出一个确认框
- - this.myApp.msg(option) //弹出一个2秒钟后自动关闭的消息提示框
+ - this.myApp.alert(option) //弹出一个可以拖拽的消息确认框
+ - this.myApp.msg(option) //弹出一个2秒后自动关闭的消息提示框
 ```
