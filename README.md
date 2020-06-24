@@ -20,11 +20,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## 引入到自己的项目中
 ```
-- src/views/admin整个复制到自己项目的views目录下
-- 在router中引入admin/index.vue
+- src/views/win10整个复制到自己项目的views目录下
+- 在router中引入win10/index.vue
 - main.js中引入
-  - import "./views/admin/css/main.css";
-  - import myApp from "./views/admin/MyUI/js/myApp.js";
+  - import "./views/win10/css/main.css";
+  - import myApp from "./views/win10/MyUI/js/myApp.js";
   - Vue.prototype.myApp = new myApp(Vue);
 ```
 
