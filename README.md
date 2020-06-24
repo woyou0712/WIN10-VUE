@@ -34,7 +34,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
  option = {
     title: "新窗口",//应用名称
     theme: "theme",//主题css类名
-    content: "http://www.baidu.com",//内容:如果是iframe就直接填写完整的url,如果是VUE组件需要先引入组件,详细可参考index.vue组件中311行showApp方法
+    content: "http://www.baidu.com",//内容:如果是iframe就直接填写完整的url,如果是VUE组件需要先引入组件; 详细:请阅读后面的 #系统配置
     size: ["70%", "80%"],//窗口大小
     maxmin: true,//是否显示最大化和最小化,默认为true
     on(appBox) { return },//打开窗口的回调函数 appBox:窗口对象
@@ -44,4 +44,95 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     yes() { return },//点击确定回调函数
     off(id) { return },//关闭窗口回调函数
   }
+```
+# 右键菜单
+- index.vue
+### 配置
+```
+data(){
+  return {
+    // 右键菜单内容
+    rightClickDatas:{
+      // 桌面右键菜单
+      window:[],
+      // 应用图标右键菜单
+      app:[],
+      // 导航栏右键菜单
+      navbar:[]
+    },
+  }
+}
+```
+### 处理函数
+```
+methods:{
+  onRightList(name) {
+    // neme 你点击的菜单名字
+  }
+}
+```
+# 系统配置
+- index.vue
+### 配置
+```
+data(){
+  return {
+    // 背景图片列表
+    bgList : [
+      // 如果图片在服务器,则可以直接使用网络图片的完整URL
+      require("./images/bg_01.jpg"),
+      require("./images/bg_02.jpg"),
+      require("./images/bg_03.jpg"),
+      require("./images/bg_04.jpg"),
+      require("./images/bg_05.jpg")
+
+    ],
+    bgIndex :0, //当前背景下标
+    // 主题Class列表
+    themeColors : [
+      // 可以使用自定义类
+      "theme-a",   //主题类包括至少两条属性 {background-color:#???,color:#???}
+      "theme-b",
+      "theme-c",
+      "theme-d"
+    ],
+    themeIndex : 18; //当前主题下标
+    // 桌面应用列表
+    windowsApp : [
+      {
+        id: 1, //唯一ID
+        name: "浏览器", //应用名称
+        imgType: "icon",
+        icon: "&#xe604;", //应用图标
+        img: "",
+        content: browser, //VUE组件 需要先引入自定义的VUE组件 例如: import browser from "./componemts/app/browser.vue"; //浏览器
+        type: "vue", // 应用类型 "vue" "html"  
+        isShow: true, // 是否在桌面显示
+        isDel: false // 是否允许删除
+      },
+      {
+        id: 2,
+        name: "百度一下",
+        imgType: "icon",
+        icon: "&#xe612;",
+        img: "",
+        content: "https://www.baidu.com/", // iframe组件
+        type: "html",
+        isShow: true,
+        isDel: true
+      }
+    ],
+  }
+}
+```
+### 获取配置
+- 在登陆之后开始获取配置
+```
+methods:{
+  login(uname, upwd, loadData) {
+    // uneme 用户名
+    // upwd 密码
+    // loadData 回调函数,告诉login页面已经登陆成功,开始加载配置
+  }
+}
 ```
