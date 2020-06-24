@@ -1,18 +1,14 @@
 # win10
 
-## Project setup
+# 直接运行
+## 安装依赖
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+$ npm install
 ```
 
-### Compiles and minifies for production
+### 热加载运行
 ```
-npm run build
+$ npm run serve
 ```
 
 ### Customize configuration
@@ -27,4 +23,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   - import myApp from "./views/win10/MyUI/js/myApp.js";
   - Vue.prototype.myApp = new myApp(Vue);
 ```
-
+# API
+## 弹窗API
+```
+ - this.myApp.html(option) //弹出一个可以拖动的iframe窗口
+ - this.myApp.vue(option) //弹出一个可以拖动的VUE组件窗口
+ - this.myApp.alert(option) //弹出一个确认框
+ - this.myApp.msg(option) //弹出一个2秒钟后自动关闭的消息提示框
+```
