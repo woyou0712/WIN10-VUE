@@ -18,12 +18,13 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## 如何引入到自己的项目中
+## 引入到自己的项目中
 ```
 - src/views/admin整个复制到自己项目的views目录下
-- router引入admin/index.vue
+- 在router中引入admin/index.vue
 - main.js中引入
   - import "./views/admin/css/main.css";
   - import myApp from "./views/admin/MyUI/js/myApp.js";
   - Vue.prototype.myApp = new myApp(Vue);
 ```
+
