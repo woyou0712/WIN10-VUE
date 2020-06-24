@@ -23,13 +23,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   - import myApp from "./views/win10/MyUI/js/myApp.js";
   - Vue.prototype.myApp = new myApp(Vue);
 ```
-# API
-## 弹窗API
 
-- this.myApp.html(option) //弹出一个可以拖动的iframe窗口
-- this.myApp.vue(option) //弹出一个可以拖动的VUE组件窗口
-- this.myApp.alert(option) //弹出一个可以拖拽的消息确认框
-- this.myApp.msg(option) //弹出一个2秒后自动关闭的消息提示框
+# 弹窗API
+### 默认配置
 ```
  option = {
     title: "新窗口",//应用名称
@@ -45,7 +41,74 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     off(id) { return },//关闭窗口回调函数
   }
 ```
+### 弹出一个可以拖动的iframe窗口
+- this.myApp.html(option)
+**例:**
+```
+this.myApp.html({
+  content: "http://www.baidu.com/",
+  title: "百度一下",
+  theme:"theme-b",
+  // 打开窗口回调
+  on: appBox => {
+  },
+  // 窗口移动回调
+  move: appBox => {
+  },
+  // 最小化回调
+  min: appBox => {
+  },
+  // 关闭窗口回调
+  off: id => {
+  }
+});
+```
+### 弹出一个可以拖动的VUE组件窗口
+- this.myApp.vue(option)
+
+**例:**
 - 弹窗VUE组件需要先引入组件; 详情:[系统配置](#系统配置)
+```
+import browser from "./componemts/app/browser.vue"
+
+this.myApp.vue({
+  content: browser,
+  title: "浏览器",
+  theme:"theme-b",
+  props: {key:value},
+  // 打开窗口回调
+  on: appBox => {
+  },
+  // 窗口移动回调
+  move: appBox => {
+  },
+  // 最小化回调
+  min: appBox => {
+  },
+  // 关闭窗口回调
+  off: id => {
+  }
+});
+```
+### 弹出一个可以拖动的消息确认框
+- this.myApp.alert(option)
+```
+this.myApp.alert({
+  title:"提示",
+  content: "你想干什么?",
+  // 点击确定回调
+  yes:()=> {
+  }
+});
+```
+### 弹出一个2秒后自动关闭的消息提示框
+- this.myApp.msg(option)
+```
+this.myApp.msg({
+  content: "轻提示"
+});
+```
+
 # 右键菜单
 - index.vue
 ### 配置
