@@ -1,6 +1,5 @@
 <template>
   <div
-    v-else
     class="window-admin"
     @contextmenu.stop="notRightHand"
     @click="windowClick"
