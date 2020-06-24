@@ -168,6 +168,7 @@
   text-align: center;
   line-height: 40px;
   background-color: #808080;
+  color: #ffffff;
 }
 .window-login .forms .ipt-item.user-pwd .iconfont:hover {
   background-color: #aaaaaa;
