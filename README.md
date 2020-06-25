@@ -339,4 +339,146 @@ methods:{
   },
 }
 ```
+### 自定义管理菜单和磁贴
+- win10/components/built-in/memu.vue
+```
+  data() {
+    return {
+      // 菜单数据,-可从服务器获取
+      memuData: [
+        {
+          imgType: "img", //图标类型 "icon", "img"
+          icon: "", //图标,二选一
+          img:
+            "http://183.134.66.144/tx_01.jpg", //图片,二选一
+          name: "一级菜单", //名称
+          //子菜单
+          son: []
+        },
+        {
+          imgType: "icon", //图标类型 "icon", "img"
+          icon: "&#xe6fe;", //图标,二选一
+          img: "", //图片,二选一
+          name: "一级菜单2", //名称
+          //子菜单
+          son: [
+            {
+              imgType: "icon", //图标类型 "icon", "img"
+              icon: "&#xe668;",
+              img: "",
+              name: "二级菜单2",
+              son: []
+            },
+            {
+              imgType: "img", //图标类型 "icon", "img"
+              icon: "",
+              img:
+                "http://183.134.66.144/tx_02.jpg",
+              name: "二级菜单3",
+              son: []
+            }
+          ]
+        },
+        {
+          imgType: "img", //图标类型 "icon", "img"
+          icon: "", //图标,二选一
+          img:
+            "http://183.134.66.144/tx_03.jpg", //图片,二选一
+          name: "一级菜单3", //名称
+          //子菜单
+          son: [
+            {
+              imgType: "img", //图标类型 "icon", "img"
+              icon: "",
+              img:
+                "http://183.134.66.144/tx_04.jpg",
+              name: "二级菜单2",
+              son: [
+                {
+                  imgType: "img", //图标类型 "icon", "img"
+                  icon: "",
+                  img:
+                    "http://183.134.66.144/tx_05.jpg",
+                  name: "三级菜单",
+                  son: []
+                },
+                {
+                  imgType: "img", //图标类型 "icon", "img"
+                  icon: "",
+                  img:
+                    "http://183.134.66.144/tx_06.jpg",
+                  name: "三级菜单",
+                  son: []
+                }
+              ]
+            },
+            {
+              imgType: "img", //图标类型 "icon", "img"
+              icon: "",
+              img:
+                "http://183.134.66.144/tx_07.jpg",
+              name: "二级菜单3",
+              son: [
+                {
+                  imgType: "img", //图标类型 "icon", "img"
+                  icon: "",
+                  img:
+                    "http://183.134.66.144/tx_08.jpg",
+                  name: "三级菜单10",
+                  son: []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      // 打开的二级菜单
+      unfoldTwoMemu: null,
+      // 打开的三级菜单
+      unfoldThreeMemu: null,
+      // 磁贴数据,-可从服务器获取
+      pasterData: [
+        {
+          imgType: "icon", //图标类型 "icon", "img"
+          icon: "&#xe6fe;", //图标,二选一
+          img: "", //图片,二选一
+          name: "小妖出品",
+          content: "内容"
+        },
+        {
+          imgType: "img", //图标类型 "icon", "img"
+          icon: "", //图标,二选一
+          img:
+            "http://183.134.66.144/tx_09.jpg", //图片,二选一
+          name: "小妖出品",
+          content: "内容"
+        },
+        {
+          imgType: "img", //图标类型 "icon", "img"
+          icon: "", //图标,二选一
+          img:
+           "http://183.134.66.144/tx_09.jpg", //图片,二选一
+          name: "小妖出品",
+          content: "内容"
+        },
+        {
+          imgType: "img", //图标类型 "icon", "img"
+          icon: "", //图标,二选一
+          img:
+            "http://183.134.66.144/tx_09.jpg", //图片,二选一
+          name: "小妖出品",
+          content: "内容"
+        },
+        {
+          imgType: "img", //图标类型 "icon", "img"
+          icon: "", //图标,二选一
+          img:
+            "http://183.134.66.144/tx_09.jpg", //图片,二选一
+          name: "小妖出品",
+          content: "内容"
+        }
+      ]
+    };
+  },
+```
 
