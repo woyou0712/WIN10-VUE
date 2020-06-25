@@ -113,7 +113,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 10px 20px;
+  padding: 10px 20px !important;
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
 }
@@ -493,7 +493,7 @@
   cursor: default;
   overflow: hidden;
   border-radius: 10px;
-  padding: 5px 2px;
+  padding: 5px 2px !important;
 }
 .right-click-list .list-item {
   padding: 5px 11px;
@@ -555,7 +555,7 @@
   display: flex;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.6);
   flex-wrap: wrap;
-  padding: 10px;
+  padding: 10px !important;
 }
 .window-iconfont-list .icon-box {
   width: 50px;
@@ -889,12 +889,17 @@ body,
   width: 100%;
   min-width: 992PX;
   height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 * {
+  box-sizing: border-box;
+}
+
+.window-admin * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
 
 .nowrap {
