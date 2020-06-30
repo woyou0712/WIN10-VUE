@@ -1,23 +1,24 @@
 !function () {
-
-  const MyUI = require("./MyUI")
+  const MyUI = require("./MyUI");
   // 拖拽方法,e:触发事件的元素,appBox:APP窗口元素
-  function drga(e, appBox, shade) {
+  function drga(e, appBox, shade, myWindows) {
     var e = e || window.event;  //兼容IE浏览器
-    const myWindows = document.querySelector("#app>.window-admin")
-    appBox.appendChild(shade)
+    appBox.appendChild(shade);
     myWindows.onmousemove = function (event) {
       let left = event.clientX - e.offsetX;
       let top = event.clientY - e.offsetY;
       appBox.style.left = left + 'px';
       appBox.style.top = top + 'px';
-    }
+    };
     myWindows.onmouseup = function () {
       this.onmousemove = null;
       this.onmouseup = null;
       appBox.removeChild(shade);
-    }
-  }
+    };
+  };
+
+
+
   // 设置Zindex层
   MyUI.prototype.zIndex = 100;
 
@@ -25,7 +26,7 @@
   MyUI.prototype.id = 0;
 
 
-  // 配置文件
+  // 全局配置
   MyUI.prototype.option = {
     title: "新窗口",//应用名称
     theme: "theme",//主题css类名
@@ -44,16 +45,20 @@
     this.zIndex += 1;
     appBox.style["z-index"] = this.zIndex;
     if (typeof config.move == "function") {
-      config.move(appBox)
+      config.move(appBox);
     } else {
-      this.option.move(appBox)
-    }
-  }
+      this.option.move(appBox);
+    };
+  };
+
+  // 获取弹窗的容器
+  MyUI.prototype.myWindows = function () {
+    return document.querySelector("#app>.window-admin");
+  };
 
   // 初始化一个应用弹窗(iframe或者VUE组件)
   MyUI.prototype.__initApp = function (config) {
-    // 获取桌面元素
-    let father = document.querySelector("#app>.window-admin")
+    let myWindows = this.myWindows();
     // ID和zindex+1
     this.id += 1;
     this.zIndex += 1
@@ -68,14 +73,14 @@
     appBox.onmousedown = (e) => {
       e.stopPropagation();
       // 如果之前还有遮罩层则清除掉遮罩层
-      let arr = document.querySelectorAll(".app-shade")
+      let arr = document.querySelectorAll(".app-shade");
       for (let item of arr) {
         appBox.removeChild(item)
       }
       // 置顶 并且调用回调函数
       this.down(appBox, config);
       // 移动拖拽
-      drga(e, appBox, this.shade)
+      drga(e, appBox, this.shade, myWindows)
     };
     // 阻止右键默认事件
     appBox.oncontextmenu = e => {
@@ -130,7 +135,7 @@
       if (typeof config.off == "function") {
         config.off(appBox.id)//调用回调函数
       }
-      father.removeChild(appBox);//删除该窗口元素
+      myWindows.removeChild(appBox);//删除该窗口元素
     };
     // 判断配置,是否需要显示最大化和最小化按钮
     if ((this.option.maxmin && config.maxmin !== false) || config.maxmin === true) {
@@ -155,13 +160,13 @@
       this.down(appBox, config);
     }
     return {
-      father, appBox, section
+      myWindows, appBox, section
     }
   }
 
   // 创建一个iframe弹窗
   MyUI.prototype.html = function (config) {
-    let { father, appBox, section } = this.__initApp(config);//初始化数据
+    let { myWindows, appBox, section } = this.__initApp(config);//初始化数据
     // 创建iframs元素
     let iframs = document.createElement("iframe");
     iframs.sandbox = "allow-forms allow-scripts allow-same-origin allow-popups";//防止域名重定向,导致整个页面跳转
@@ -169,7 +174,7 @@
     iframs.src = config.content ? config.content : this.option.content;
     section.appendChild(iframs)
     appBox.appendChild(section)
-    father.appendChild(appBox);//将容器挂载到dom树上并渲染
+    myWindows.appendChild(appBox);//将容器挂载到dom树上并渲染
     // 打开窗口回调
     if (typeof config.on == "function") {
       config.on(appBox)
@@ -178,13 +183,13 @@
 
   // 创建一个Vue组件弹窗
   MyUI.prototype.vue = function (config) {
-    let { father, appBox, section } = this.__initApp(config);//初始化数据
+    let { myWindows, appBox, section } = this.__initApp(config);//初始化数据
     // 创建组件容器,容纳vue组件
     let vueBox = document.createElement("div");
     vueBox.id = `vue-box-${this.id}`
     section.appendChild(vueBox)
     appBox.appendChild(section)
-    father.appendChild(appBox);//将容器挂载到dom树上并渲染
+    myWindows.appendChild(appBox);//将容器挂载到dom树上并渲染
     // 创建构造器,将vue组件实例化
     var Profile = this.Vue.extend(config.content);
     // 创建 Profile 实例，并挂载到一个元素上。
@@ -201,8 +206,7 @@
 
   // 初始化一个消息框
   MyUI.prototype.__initInfo = function (config) {
-    // 获取桌面元素
-    let father = document.querySelector("#app>.window-admin")
+    let myWindows = this.myWindows();
     // ID和zindex+1
     this.id += 1;
     this.zIndex += 1
@@ -225,11 +229,11 @@
       this.down(appBox, config);
     }
 
-    return { father, appBox, msg }
+    return { myWindows, appBox, msg }
   }
   // 创建一个alert弹窗
   MyUI.prototype.alert = function (config) {
-    let { father, appBox, msg } = this.__initInfo(config)
+    let { myWindows, appBox, msg } = this.__initInfo(config)
     appBox.classList.add("my-alert")
     // 鼠标按下事件
     appBox.onmousedown = (e) => {
@@ -242,7 +246,7 @@
       // 置顶 并且调用回调函数
       this.down(appBox, config);
       // 拖拽事件
-      drga(e, appBox, this.shade)
+      drga(e, appBox, this.shade, myWindows)
     };
     // 标题
     let title = document.createElement("div");
@@ -267,7 +271,7 @@
       } else {
         this.option.off(appBox.id)
       }
-      father.removeChild(appBox);//删除该窗口元素
+      myWindows.removeChild(appBox);//删除该窗口元素
     }
     title.appendChild(name);
     title.appendChild(off);
@@ -292,22 +296,22 @@
       } else {
         this.option.yes()
       }
-      father.removeChild(appBox);//删除该窗口元素
+      myWindows.removeChild(appBox);//删除该窗口元素
     }
     btns.appendChild(btn);
     appBox.appendChild(btns);
     // 将元素挂在到桌面
-    father.appendChild(appBox);
+    myWindows.appendChild(appBox);
   }
   // 创建一个消息提示框
   MyUI.prototype.msg = function (config) {
-    let { father, appBox, msg } = this.__initInfo(config)
+    let { myWindows, appBox, msg } = this.__initInfo(config)
     appBox.classList.add("my-msg")
     appBox.appendChild(msg);
     // 将元素挂在到桌面
-    father.appendChild(appBox);
+    myWindows.appendChild(appBox);
     setTimeout(() => {
-      father.removeChild(appBox);//删除该窗口元素
+      myWindows.removeChild(appBox);//删除该窗口元素
     }, 2000)
   }
   module.exports = MyUI;
