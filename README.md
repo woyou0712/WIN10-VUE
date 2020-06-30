@@ -481,4 +481,16 @@ methods:{
     };
   },
 ```
+# 配置本地icon图标列表
+- 先更新/win10/iconfont/目录下的图标文件：[阿里iconfont图标](https://www.iconfont.cn/)
+- 再添加到本地iconfont图标列表组件中
+  - /win10/components/built-in/iconfontList.vue 
+```
 
+  data() {
+    return {
+      iconList: [
+      ]
+    };
+  }
+```
