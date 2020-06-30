@@ -1,4 +1,5 @@
 [官方网站](http://win10.bauble.top/#/)
+---
 [QQ交流群](https://jq.qq.com/?_wv=1027&k=A6uckLvp)
 # 直接运行
 ## 安装依赖
