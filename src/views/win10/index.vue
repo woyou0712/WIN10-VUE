@@ -526,6 +526,28 @@ export default {
             },
             {
               id: 2,
+              name: "官方网站",
+              imgType: "icon",
+              icon: "&#xe600;",
+              img: "",
+              content: "http://win10.bauble.top/#/",
+              type: "html",
+              isShow: true,
+              isDel: true
+            },
+            {
+              id: 3,
+              name: "在线文档",
+              imgType: "icon",
+              icon: "&#xe617;",
+              img: "",
+              content: "http://win10.bauble.top/#/md",
+              type: "html",
+              isShow: true,
+              isDel: true
+            },
+            {
+              id: 4,
               name: "百度一下",
               imgType: "icon",
               icon: "&#xe612;",
@@ -536,7 +558,7 @@ export default {
               isDel: true
             },
             {
-              id: 3,
+              id: 5,
               name: "微信",
               imgType: "icon",
               icon: "&#xe638;",

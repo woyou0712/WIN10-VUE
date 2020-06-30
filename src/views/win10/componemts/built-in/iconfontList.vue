@@ -18,6 +18,11 @@ export default {
   data() {
     return {
       iconList: [
+        "&#xe617;",
+        "&#xe600;",
+        "&#xe712;",
+        "&#xe613;",
+
         "&#xe6ab;",
         "&#xe607;",
         "&#xe638;",
