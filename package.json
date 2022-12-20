@@ -17,6 +17,7 @@
     "@vue/cli-service": "~4.4.0",
     "vue-template-compiler": "^2.6.11"
   },
+  "license": "ISC",
   "browserslist": [
     "> 1%",
     "last 2 versions",
